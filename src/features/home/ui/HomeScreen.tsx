@@ -15,6 +15,13 @@ import { TransactionSheet } from "./TransactionSheet";
 
 const PREVIEW_COUNT = 8;
 
+// TEMPORARY: only the Map utility button should react to taps; every other
+// trigger on the home screen is locked. Flip this back to false (or delete
+// the guard usages below) to restore normal behavior.
+const LOCK_NON_MAP_TRIGGERS = true;
+const noop = () => {};
+const noopAsync = async () => {};
+
 interface Props {
   onOpenMap?: () => void;
 }
@@ -75,11 +82,17 @@ export function HomeScreen({ onOpenMap }: Props = {}) {
         name={USER.name}
         avatar="/assets/home/avatar.png"
         unread={unread}
-        onOpenProfile={() => setModal({ kind: "account" })}
-        onOpenNotifications={() => {
-          setReadIds(NOTIFICATIONS.map((notification) => notification.id));
-          setModal({ kind: "notifications" });
-        }}
+        onOpenProfile={
+          LOCK_NON_MAP_TRIGGERS ? noop : () => setModal({ kind: "account" })
+        }
+        onOpenNotifications={
+          LOCK_NON_MAP_TRIGGERS
+            ? noop
+            : () => {
+                setReadIds(NOTIFICATIONS.map((notification) => notification.id));
+                setModal({ kind: "notifications" });
+              }
+        }
       />
 
       <BalanceCard
@@ -87,20 +100,29 @@ export function HomeScreen({ onOpenMap }: Props = {}) {
         fiat={BALANCE.vnd}
         hidden={hidden}
         inZone={inZone}
-        onToggleHidden={() => setHidden((value) => !value)}
-        onDeposit={() => setModal({ kind: "deposit" })}
-        onSend={() => setModal({ kind: "spend" })}
+        onToggleHidden={
+          LOCK_NON_MAP_TRIGGERS ? noop : () => setHidden((value) => !value)
+        }
+        onDeposit={
+          LOCK_NON_MAP_TRIGGERS ? noop : () => setModal({ kind: "deposit" })
+        }
+        onSend={LOCK_NON_MAP_TRIGGERS ? noop : () => setModal({ kind: "spend" })}
       />
 
       <TransactionSheet
         transactions={list.slice(0, PREVIEW_COUNT)}
-        onSelect={openTransaction}
-        onViewAll={() => setModal({ kind: "all" })}
-        onRefresh={refresh}
+        onSelect={LOCK_NON_MAP_TRIGGERS ? noop : openTransaction}
+        onViewAll={
+          LOCK_NON_MAP_TRIGGERS ? noop : () => setModal({ kind: "all" })
+        }
+        onRefresh={LOCK_NON_MAP_TRIGGERS ? noopAsync : refresh}
         onOpenMap={onOpenMap}
       />
 
-      <BottomNav active={tab} onNavigate={handleNavigate} />
+      <BottomNav
+        active={tab}
+        onNavigate={LOCK_NON_MAP_TRIGGERS ? noop : handleNavigate}
+      />
 
       <HomeModals
         modal={modal}
