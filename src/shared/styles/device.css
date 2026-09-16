@@ -1,0 +1,114 @@
+/* ==========================================================================
+   Stage — centres the 393×852 device on desktop, full-bleed on phones
+   ========================================================================== */
+
+.stage {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(120% 90% at 50% -10%, #1b2540 0%, #0b0e17 60%);
+}
+
+.screen {
+  position: relative;
+  width: var(--bp-screen-w);
+  height: var(--bp-screen-h);
+  overflow: hidden;
+  background: var(--bp-page);
+  isolation: isolate;
+}
+
+/* ==========================================================================
+   Device frame — decorative iPhone Pro Max chrome (bezel + Dynamic Island)
+   wrapped around `.app-shell`. `.frame` is the direct child of `.stage`, so
+   the responsive scale lives here (see the note this block used to carry on
+   `.app-shell`): `.stage`'s grid centers/sizes itself around whichever
+   element is its direct child, using that element's *post-transform* box —
+   putting the scale one level too deep would leave `.frame` at its full
+   unscaled size on any viewport narrower than the frame, which is most
+   phones. Below the breakpoint the frame has no border/radius/shadow and
+   the island is hidden, so real phones still get a full-bleed, undecorated
+   screen.
+   ========================================================================== */
+
+.frame {
+  position: relative;
+  width: calc(var(--bp-screen-w) + var(--bp-frame-bezel) * 2);
+  height: calc(var(--bp-screen-h) + var(--bp-frame-bezel) * 2);
+  padding: var(--bp-frame-bezel);
+  transform: scale(var(--bp-scale, 1));
+  transform-origin: center;
+  box-sizing: border-box;
+}
+
+.frame__screen {
+  position: relative;
+  width: var(--bp-screen-w);
+  height: var(--bp-screen-h);
+  overflow: hidden;
+}
+
+.frame__island {
+  display: none;
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 126px;
+  height: 37px;
+  border-radius: 20px;
+  background: #000;
+  z-index: 5;
+  pointer-events: none;
+}
+
+@media (min-width: 480px) and (min-height: 600px) {
+  .stage {
+    padding: 40px;
+  }
+  .frame {
+    border-radius: var(--bp-frame-radius);
+    background: linear-gradient(155deg, #3a3d42, #1c1f26 45%, #0a0a0b);
+    box-shadow:
+      inset 0 0 0 1px #4b4e54,
+      0 0 0 1px #050506,
+      0 40px 90px -20px rgba(0, 0, 0, 0.75);
+  }
+  .frame__screen {
+    border-radius: var(--bp-screen-radius);
+  }
+  .frame__island {
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   App shell — swaps between the Home and Map screens with a push transition.
+   ========================================================================== */
+
+.app-shell {
+  position: relative;
+  width: var(--bp-screen-w);
+  height: var(--bp-screen-h);
+  overflow: hidden;
+}
+
+.app-shell__pane {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.38s var(--bp-ease);
+}
+
+.app-shell__pane--map {
+  transform: translateX(100%);
+  z-index: 2;
+}
+
+.app-shell[data-open="map"] .app-shell__pane--home {
+  transform: translateX(-14%);
+}
+
+.app-shell[data-open="map"] .app-shell__pane--map {
+  transform: translateX(0);
+}
+

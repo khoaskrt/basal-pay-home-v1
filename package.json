@@ -1,27 +1,43 @@
 {
-  "name": "home-v1",
+  "name": "basalpay-home-v1",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "./node_modules/.bin/eslint .",
+    "typecheck": "./node_modules/.bin/tsc --noEmit",
+    "verify:visual": "node scripts/visual-regression/home/run.mjs",
+    "verify:diff": "node scripts/visual-regression/home/diff.mjs",
+    "verify:text": "python3 scripts/visual-regression/home/textmetrics.py",
+    "verify:regions": "uv run --with numpy --with pillow python3 scripts/visual-regression/home/regions.py",
+    "verify:interactions": "node scripts/visual-regression/home/interactions.mjs",
+    "verify": "pnpm run lint && pnpm run typecheck && pnpm run verify:visual"
   },
   "dependencies": {
+    "maplibre-gl": "^5.9.1",
     "next": "16.3.5",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/geojson": "^7946.0.16",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
+    "pixelmatch": "^7.2.0",
+    "playwright": "^1.63.0",
+    "pngjs": "^7.0.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
-  "packageManager": "pnpm@11.7.0"
+  "packageManager": "pnpm@11.7.0",
+  "description": "Basal Pay app revamp — Home V1, rebuilt from Figma node 1671-3913 with Next.js + React.",
+  "engines": {
+    "node": ">=22.13.0"
+  }
 }

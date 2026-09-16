@@ -1,0 +1,222 @@
+import type { GroupMeta, LatLng, Zone, ZoneGroupId } from "@/features/map/model/types";
+
+/** Da Nang — sits inside the Hai Chau Key Area zone, matching the prototype. */
+export const USER: LatLng = [16.07, 108.223];
+
+export const GROUPS: Record<ZoneGroupId, GroupMeta> = {
+  area: { label: "Area" },
+  airport: { label: "Airport" },
+  resort: { label: "Resort & Golf" },
+};
+
+export const ZONES: Zone[] = [
+  {
+    id: "haichau",
+    group: "area",
+    name: "Hai Chau Key Area",
+    desc: "Riverside cultural/heritage space along the Han River, Han Market, Con Market, financial district",
+    poly: [
+      [16.0845, 108.2145],
+      [16.087, 108.2245],
+      [16.076, 108.228],
+      [16.064, 108.2265],
+      [16.056, 108.22],
+      [16.059, 108.21],
+      [16.07, 108.2065],
+      [16.08, 108.2085],
+    ],
+    places: [
+      { name: "Han River Coffee", type: "food", rating: "4.6", distance: "0.4 km" },
+      { name: "Han Market", type: "shop", rating: "4.4", distance: "0.6 km" },
+      { name: "Ba Tu Mi Quang", type: "food", rating: "4.7", distance: "0.9 km" },
+      { name: "Han River Hotel", type: "stay", rating: "4.5", distance: "1.1 km" },
+      { name: "Con Market", type: "shop", rating: "4.3", distance: "1.5 km" },
+      { name: "Co Ba Banh Xeo", type: "food", rating: "4.6", distance: "1.8 km" },
+    ],
+  },
+  {
+    id: "anhai",
+    group: "area",
+    name: "An Hai Key Area",
+    desc: "My Khe Beach – Pham Van Dong, Vincom Plaza, Son Tra Night Market",
+    poly: [
+      [16.088, 108.232],
+      [16.09, 108.245],
+      [16.07, 108.248],
+      [16.056, 108.244],
+      [16.0555, 108.232],
+      [16.07, 108.229],
+    ],
+    places: [
+      { name: "My Khe Seafood", type: "food", rating: "4.6", distance: "0.5 km" },
+      { name: "Vincom Plaza Ngo Quyen", type: "shop", rating: "4.5", distance: "0.8 km" },
+      { name: "Son Tra Night Market", type: "shop", rating: "4.2", distance: "1.0 km" },
+      { name: "Sea Salt Coffee", type: "food", rating: "4.7", distance: "1.3 km" },
+      { name: "Bien Dong Hotel", type: "stay", rating: "4.4", distance: "1.6 km" },
+    ],
+  },
+  {
+    id: "nhs",
+    group: "area",
+    name: "Ngu Hanh Son Key Area",
+    desc: "An Thuong quarter, beachfront resort strip, Non Nuoc stone village",
+    poly: [
+      [16.048, 108.245],
+      [16.048, 108.26],
+      [16.018, 108.268],
+      [16.008, 108.26],
+      [16.023, 108.243],
+    ],
+    places: [
+      { name: "An Thuong BBQ", type: "food", rating: "4.5", distance: "0.3 km" },
+      { name: "Non Nuoc Stone Village", type: "shop", rating: "4.3", distance: "1.2 km" },
+      { name: "Non Nuoc Beach Resort", type: "stay", rating: "4.8", distance: "1.5 km" },
+      { name: "An Thuong Corner Coffee", type: "food", rating: "4.6", distance: "0.6 km" },
+      { name: "Ngu Hanh Fish Cake Noodles", type: "food", rating: "4.4", distance: "0.9 km" },
+    ],
+  },
+  {
+    id: "hoian",
+    group: "area",
+    name: "Hoi An Key Area",
+    desc: "Hoi An Ancient Town, UNESCO World Heritage Site, shopping & dining hub",
+    poly: [
+      [15.889, 108.323],
+      [15.893, 108.343],
+      [15.879, 108.348],
+      [15.87, 108.338],
+      [15.874, 108.323],
+    ],
+    places: [
+      { name: "Hoi An Cao Lau", type: "food", rating: "4.8", distance: "0.2 km" },
+      { name: "Hoi An Market", type: "shop", rating: "4.5", distance: "0.4 km" },
+      { name: "Old Town Silk Tailor", type: "shop", rating: "4.6", distance: "0.5 km" },
+      { name: "Tran Phu Garden Coffee", type: "food", rating: "4.7", distance: "0.3 km" },
+      { name: "Hoai River Homestay", type: "stay", rating: "4.6", distance: "0.8 km" },
+      { name: "Ba Sau Banh Mi", type: "food", rating: "4.7", distance: "0.6 km" },
+    ],
+  },
+  {
+    id: "airport",
+    group: "airport",
+    name: "Da Nang International Airport",
+    desc: "Terminals T1 & T2",
+    poly: [
+      [16.056, 108.1935],
+      [16.056, 108.2065],
+      [16.03, 108.2025],
+      [16.031, 108.193],
+    ],
+    places: [
+      { name: "Terminal T1 Coffee", type: "food", rating: "4.2", distance: "0.2 km" },
+      { name: "Terminal T2 Duty-Free", type: "shop", rating: "4.4", distance: "0.5 km" },
+      { name: "Airport Restaurant", type: "food", rating: "4.1", distance: "0.4 km" },
+      { name: "Transit Hotel", type: "stay", rating: "4.3", distance: "0.7 km" },
+    ],
+  },
+  {
+    id: "bana",
+    group: "resort",
+    name: "Ba Na Hills",
+    desc: "Resort tourism complex, Ba Na Commune",
+    poly: [
+      [15.999, 107.988],
+      [16.003, 108.006],
+      [15.989, 108.009],
+      [15.986, 107.993],
+    ],
+    places: [
+      { name: "Mountain Peak Restaurant", type: "food", rating: "4.5", distance: "0.3 km" },
+      { name: "French Village Coffee", type: "food", rating: "4.6", distance: "0.4 km" },
+      { name: "French Village Hotel", type: "stay", rating: "4.7", distance: "0.5 km" },
+      { name: "Ba Na Gift Shop", type: "shop", rating: "4.2", distance: "0.2 km" },
+    ],
+  },
+  {
+    id: "legend",
+    group: "resort",
+    name: "Legend Danang Golf Resort",
+    desc: "Ngu Hanh Son Ward",
+    poly: [
+      [16.013, 108.2645],
+      [16.015, 108.274],
+      [16.004, 108.276],
+      [16.002, 108.266],
+    ],
+    places: [
+      { name: "Legend Clubhouse", type: "food", rating: "4.6", distance: "0.2 km" },
+      { name: "Legend Pro Shop", type: "shop", rating: "4.4", distance: "0.2 km" },
+      { name: "Legend Beach Villa", type: "stay", rating: "4.7", distance: "0.6 km" },
+      { name: "Hole 19 Bar", type: "food", rating: "4.5", distance: "0.3 km" },
+    ],
+  },
+  {
+    id: "banagolf",
+    group: "resort",
+    name: "Ba Na Hills Golf Club",
+    desc: "Ba Na Commune",
+    poly: [
+      [15.988, 108.033],
+      [15.99, 108.045],
+      [15.979, 108.047],
+      [15.977, 108.035],
+    ],
+    places: [
+      { name: "Ba Na Golf Clubhouse", type: "food", rating: "4.7", distance: "0.2 km" },
+      { name: "Ba Na Golf Pro Shop", type: "shop", rating: "4.3", distance: "0.2 km" },
+      { name: "Mountainside Restaurant", type: "food", rating: "4.5", distance: "0.5 km" },
+    ],
+  },
+  {
+    id: "montgomerie",
+    group: "resort",
+    name: "Montgomerie Links Vietnam",
+    desc: "Dien Ban Dong Ward",
+    poly: [
+      [15.945, 108.299],
+      [15.947, 108.31],
+      [15.934, 108.312],
+      [15.932, 108.301],
+    ],
+    places: [
+      { name: "Montgomerie Clubhouse", type: "food", rating: "4.5", distance: "0.2 km" },
+      { name: "Links Pro Shop", type: "shop", rating: "4.2", distance: "0.3 km" },
+      { name: "Montgomerie Links Villas", type: "stay", rating: "4.6", distance: "0.7 km" },
+    ],
+  },
+  {
+    id: "hoiana",
+    group: "resort",
+    name: "Hoiana Resort & Golf",
+    desc: "Duy Nghia Commune",
+    poly: [
+      [15.826, 108.368],
+      [15.829, 108.383],
+      [15.812, 108.388],
+      [15.809, 108.372],
+    ],
+    places: [
+      { name: "Hoiana Shores Restaurant", type: "food", rating: "4.7", distance: "0.4 km" },
+      { name: "Hoiana Hotel & Suites", type: "stay", rating: "4.8", distance: "0.5 km" },
+      { name: "Hoiana Shopping Center", type: "shop", rating: "4.4", distance: "0.3 km" },
+      { name: "Hoiana Beach Bar", type: "food", rating: "4.6", distance: "0.8 km" },
+    ],
+  },
+  {
+    id: "vinpearl",
+    group: "resort",
+    name: "Vinpearl Golf Nam Hoi An",
+    desc: "Thang An Commune",
+    poly: [
+      [15.778, 108.418],
+      [15.78, 108.433],
+      [15.764, 108.436],
+      [15.762, 108.421],
+    ],
+    places: [
+      { name: "Nam Hoi An Clubhouse", type: "food", rating: "4.5", distance: "0.3 km" },
+      { name: "Coconut Garden Restaurant", type: "food", rating: "4.4", distance: "0.5 km" },
+      { name: "Vinpearl Resort Nam Hoi An", type: "stay", rating: "4.7", distance: "0.6 km" },
+    ],
+  },
+];

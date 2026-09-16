@@ -1,26 +1,97 @@
 @import "tailwindcss";
 
+@import "../shared/styles/device.css";
+@import "../shared/styles/bottom-sheet.css";
+@import "../features/home/styles/home.css";
+@import "../features/map/styles/map.css";
+
+/* ==========================================================================
+   Basal Pay — Home V1 design tokens
+   Source: Figma "🔵 Basal pay - App revamp UI" → node 1671-3913 (iPhone 14 Pro, 393×852)
+   ========================================================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* -- surfaces -- */
+  --bp-page: #f2f3f8;
+  --bp-surface: #ffffff;
+  --bp-nav: #101727;
+
+  /* -- brand -- */
+  --bp-blue: #2b59ff;
+  --bp-blue-600: #1f4ce8;
+  --bp-green: #16bd73;
+  --bp-pink: #f863ad;
+
+  /* -- text -- */
+  --bp-text: #05070c;
+  --bp-text-heading: #4a4e56;
+  --bp-text-muted: #a0a0a0;
+  --bp-text-faint: #90939b;
+
+  /* -- transaction icon chips -- */
+  --bp-chip-in-bg: #d3e4ff;
+  --bp-chip-in-fg: #2c50fd;
+  --bp-chip-out-bg: #fcdcf3;
+  --bp-chip-out-fg: #f863ad;
+
+  /* -- geometry (logical px on the 393×852 frame) -- */
+  --bp-screen-w: 393px;
+  --bp-screen-h: 852px;
+  --bp-gutter: 18px;
+
+  --bp-card-top: 126.5px;
+  --bp-card-inset: 11px;
+  --bp-card-h: 231px;
+  --bp-card-radius: 28px;
+
+  --bp-sheet-top: 369px;
+  --bp-sheet-radius: 28px;
+
+  --bp-nav-top: 748px;
+  --bp-nav-h: 73px;
+  --bp-nav-inset: 19.5px;
+  --bp-fab: 67px;
+  --bp-fab-top: 745px;
+  --bp-tx-title-w: 205px;
+
+  /* -- device frame (desktop preview chrome) -- */
+  --bp-frame-bezel: 14px;
+  --bp-frame-radius: 62px;
+  --bp-screen-radius: 48px;
+
+  /* -- type -- */
+  --bp-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* -- motion -- */
+  --bp-ease: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-family: var(--bp-font);
+  background: #0b0e17;
+  color: var(--bp-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
 }
