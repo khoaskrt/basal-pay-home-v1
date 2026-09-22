@@ -10,6 +10,10 @@ Read [`index.md`](./index.md) before changing the code. It records the Figma
 sources, current visual baseline, feature boundaries, verification workflow and
 rules for adding the next screen.
 
+Read [`APP_SPEC.md`](./APP_SPEC.md) to understand how the app actually
+behaves at runtime — screens, state, data flow, and the current interaction
+lock (`LOCK_NON_MAP_TRIGGERS`).
+
 ## Requirements
 
 - Node.js **22.13.0+** (the repository pins `pnpm@11.7.0`, which requires it)
